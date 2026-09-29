@@ -9,7 +9,7 @@ class PetCreate(BaseModel):
     nome_tutor:str
     telefone_tutor:str
 
-class PetResonse(PetCreate):
+class PetResponse(PetCreate):
     id:int
     class config:
         from_atributes = True
