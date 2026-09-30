@@ -3,10 +3,19 @@ from sqlalchemy.orm import Session
 from database import Base, engine, get_db
 import models
 import schemas
+from fastapi.middleware.cors import CORSMiddleware
 
 Base.metadata.create_all(bind=engine)
 
 app = FastAPI(title="API DO APP PET")
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
 
 @app.post("/pets/", response_model=schemas.PetResponse)
 def criar_pet(pet: schemas.PetCreate, db: Session = Depends(get_db)):
