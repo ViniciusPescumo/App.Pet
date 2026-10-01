@@ -17,7 +17,7 @@ app.add_middleware(
 )
 
 
-@app.post("/pets/", response_model=schemas.PetResponse)
+@app.post("/pets", response_model=schemas.PetResponse)
 def criar_pet(pet: schemas.PetCreate, db: Session = Depends(get_db)):
     novo_pet = models.Pet(**pet.dict())
     db.add(novo_pet)
@@ -26,7 +26,7 @@ def criar_pet(pet: schemas.PetCreate, db: Session = Depends(get_db)):
     return novo_pet
 
 #BUSCAR TODOS
-@app.get("/pets/")
+@app.get("/pets")
 def listar_pets(db: Session = Depends(get_db)):
     return db.query(models.Pet).all()
 
