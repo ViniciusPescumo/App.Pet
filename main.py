@@ -16,7 +16,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-
+#CRIAR PET
 @app.post("/pets", response_model=schemas.PetResponse)
 def criar_pet(pet: schemas.PetCreate, db: Session = Depends(get_db)):
     novo_pet = models.Pet(**pet.dict())
